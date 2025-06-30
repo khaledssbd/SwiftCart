@@ -1,6 +1,5 @@
-
-import { getAllCategories } from "@/services/Category";
-import ManageCategories from "./_components";
+import ManageCategories from '@/components/modules/dashboard/AdminDashboard/ManageCategories';
+import { getAllCategories } from '@/services/Category';
 
 const ProductCategoryPage = async ({
   searchParams,

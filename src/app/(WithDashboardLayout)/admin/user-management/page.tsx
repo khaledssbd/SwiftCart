@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// app/dashboard/users/page.tsx
-'use client'
+'use client';
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { useState, useEffect } from "react";
-import { toast } from "sonner";
-import { getAllUsers, updateUserStatus } from "./_actions";
-import UserTable from "./_components/UserTable";
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
+import { getAllUsers, updateUserStatus } from '@/services/User';
+import UserTable from '@/components/modules/dashboard/AdminDashboard/UserTable';
 
 type User = {
   _id: string;
@@ -18,7 +17,6 @@ type User = {
 
 const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -26,9 +24,8 @@ const UsersPage = () => {
         const { data } = await getAllUsers();
         setUsers(data);
       } catch (error) {
-        toast.error("Failed to fetch users");
+        toast.error('Failed to fetch users!');
       } finally {
-        setLoading(false);
       }
     };
     fetchUsers();
@@ -37,12 +34,12 @@ const UsersPage = () => {
   const handleStatusUpdate = async (userId: string, isActive: boolean) => {
     try {
       await updateUserStatus(userId, isActive ? 'active' : 'inactive');
-      setUsers(users.map(user => 
-        user._id === userId ? { ...user, isActive } : user
-      ));
+      setUsers(
+        users.map(user => (user._id === userId ? { ...user, isActive } : user))
+      );
       toast.success(`User ${isActive ? 'activated' : 'deactivated'}`);
     } catch (error) {
-      toast.error("Failed to update user status");
+      toast.error('Failed to update user status!');
     }
   };
 
@@ -56,8 +53,8 @@ const UsersPage = () => {
         </CardHeader>
         <CardContent>
           <div className="rounded-md border">
-            <UserTable 
-              users={users} 
+            <UserTable
+              users={users}
               // loading={loading}
               onStatusUpdate={handleStatusUpdate}
             />

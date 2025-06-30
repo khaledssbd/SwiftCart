@@ -1,16 +1,16 @@
 import FeaturedProducts from '@/components/modules/home/FeaturedProducts';
 import FlashSale from '@/components/modules/home/FlashSale';
-import Category from './_components/_category/CategoryModule';
-import TopBrands from './_components/_brand/BrandModule';
 import { HeroSection } from '@/components/modules/home/HeroSection';
 import { Subscribe } from '@/components/modules/Newsletter';
-import Tawk from './_components/_Tawk/Tawk';
 import Testimonials from '@/components/modules/Testimonials';
-import Trending from './_components/_Trending/Trending';
 import { getAllCategories } from '@/services/Category';
 import { getAllProducts, getTrendingProducts } from '@/services/Product';
 import { getFlashSaleProducts } from '@/services/FlashSale';
 import { getAllBrands } from '@/services/Brand';
+import TopBrands from '@/components/modules/home/TopBrands';
+import Category from '@/components/modules/home/Category';
+import Trending from '@/components/modules/home/Trending';
+import Tawk from '@/components/modules/home/Tawk';
 
 const HomePage = async () => {
   // const { data: categories } = await getAllCategories();

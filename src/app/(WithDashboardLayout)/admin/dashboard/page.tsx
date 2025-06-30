@@ -1,10 +1,10 @@
 import { getAllBrands } from '@/services/Brand';
-import { getAllShops } from '../shop/all-shops/_actions';
-import { getAllUsers } from '../user-management/_actions';
 import { getAllCategories } from '@/services/Category';
-import DashboardPage from './_components/DashboardPage';
 import { LayersIcon, StoreIcon, TagsIcon, UsersIcon } from 'lucide-react';
 import { IBrand, ICategory, IShop, IUser } from '@/types';
+import DashboardPage from '@/components/modules/dashboard/AdminDashboard';
+import { getAllShops } from '@/services/Shop';
+import { getAllUsers } from '@/services/User';
 
 export default async function Dashboard() {
   const [usersRes, shopsRes, brandsRes, categoriesRes] = await Promise.all([

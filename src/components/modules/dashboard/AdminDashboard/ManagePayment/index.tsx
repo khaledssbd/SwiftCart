@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { SCTable } from "@/components/ui/core/SCTable";
-import { ColumnDef } from "@tanstack/react-table";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { IPayment, IMeta } from "@/types";
-import TablePagination from "@/components/ui/core/SCTable/TablePagination";
+import { SCTable } from '@/components/ui/core/SCTable';
+import { ColumnDef } from '@tanstack/react-table';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { IPayment, IMeta } from '@/types';
+import TablePagination from '@/components/ui/core/SCTable/TablePagination';
 
-import { toast } from "sonner";
+import { toast } from 'sonner';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useRouter } from "next/navigation";
-import { updatePaymentStatus } from "../_actions";
-import Image from "next/image";
+} from '@/components/ui/select';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { updatePaymentStatus } from '@/services/Payment';
 
 const ManagePayments = ({
   payments,
@@ -34,19 +34,19 @@ const ManagePayments = ({
     try {
       const res = await updatePaymentStatus(paymentId, newStatus);
       if (res.success) {
-        toast.success("Payment status updated successfully");
+        toast.success('Payment status updated successfully');
         router.refresh(); // Refresh the data
       } else {
         toast.error(res.message);
       }
     } catch (error: any) {
-      toast.error(error.message || "Failed to update payment status");
+      toast.error(error.message || 'Failed to update payment status');
     }
   };
 
   const columns: ColumnDef<IPayment>[] = [
     {
-      accessorKey: "user",
+      accessorKey: 'user',
       header: () => <div className="font-semibold">Customer</div>,
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
@@ -71,7 +71,7 @@ const ManagePayments = ({
       ),
     },
     {
-      accessorKey: "order",
+      accessorKey: 'order',
       header: () => <div className="font-semibold">Order Details</div>,
       cell: ({ row }) => (
         <div>
@@ -85,7 +85,7 @@ const ManagePayments = ({
       ),
     },
     {
-      accessorKey: "shop",
+      accessorKey: 'shop',
       header: () => <div className="font-semibold">Shop</div>,
       cell: ({ row }) => (
         <div>
@@ -97,16 +97,16 @@ const ManagePayments = ({
       ),
     },
     {
-      accessorKey: "amount",
+      accessorKey: 'amount',
       header: () => <div className="font-semibold">Amount</div>,
       cell: ({ row }) => (
         <div className="font-medium">
           {row.original.amount?.toLocaleString()} BDT
         </div>
       ),
-    } ,
+    },
     {
-      accessorKey: "status",
+      accessorKey: 'status',
       header: () => <div className="font-semibold">Status</div>,
       cell: ({ row }) => {
         const currentStatus = row.original.status;
@@ -114,9 +114,7 @@ const ManagePayments = ({
         return (
           <Select
             value={currentStatus}
-            onValueChange={(value) =>
-              handleStatusChange(row.original._id, value)
-            }
+            onValueChange={value => handleStatusChange(row.original._id, value)}
           >
             <SelectTrigger className="w-[120px]">
               <SelectValue placeholder="Status" />
@@ -126,11 +124,11 @@ const ManagePayments = ({
               <SelectItem value={currentStatus}>
                 <Badge
                   variant={
-                    currentStatus === "Paid"
-                      ? "default"
-                      : currentStatus === "Failed"
-                      ? "destructive"
-                      : "secondary"
+                    currentStatus === 'Paid'
+                      ? 'default'
+                      : currentStatus === 'Failed'
+                      ? 'destructive'
+                      : 'secondary'
                   }
                 >
                   {currentStatus}
@@ -138,7 +136,7 @@ const ManagePayments = ({
               </SelectItem>
 
               {/* Conditional options */}
-              {currentStatus === "Pending" && (
+              {currentStatus === 'Pending' && (
                 <>
                   <SelectItem value="Paid">
                     <Badge variant="default">Paid</Badge>
@@ -149,13 +147,13 @@ const ManagePayments = ({
                 </>
               )}
 
-              {currentStatus === "Paid" && (
+              {currentStatus === 'Paid' && (
                 <SelectItem value="Failed">
                   <Badge variant="destructive">Failed</Badge>
                 </SelectItem>
               )}
 
-              {currentStatus === "Failed" && (
+              {currentStatus === 'Failed' && (
                 <SelectItem value="Paid">
                   <Badge variant="default">Paid</Badge>
                 </SelectItem>
@@ -166,7 +164,7 @@ const ManagePayments = ({
       },
     },
     {
-      accessorKey: "createdAt",
+      accessorKey: 'createdAt',
       header: () => <div className="font-semibold">Date</div>,
       cell: ({ row }) => (
         <div className="text-sm text-gray-500">

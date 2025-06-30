@@ -1,5 +1,3 @@
-'use server';
-
 import { getValidToken } from '@/lib/verifyToken';
 
 // getAllUsers
@@ -16,15 +14,10 @@ export const getAllUsers = async (): Promise<any> => {
       },
     });
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch users: ${res.statusText}`);
-    }
-
     const result = await res.json();
     return result;
   } catch (error: any) {
-    console.error('Error fetching users:', error.message);
-    throw error; // Re-throw to let calling code handle it
+    return Error(error);
   }
 };
 
@@ -55,7 +48,6 @@ export const updateUserStatus = async (
     const result = await res.json();
     return result;
   } catch (error: any) {
-    console.error('Error updating user status:', error.message);
-    throw error;
+    return Error(error);
   }
 };

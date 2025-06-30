@@ -12,6 +12,7 @@ import {
 import { MoreHorizontal } from 'lucide-react';
 import { SCTable } from '@/components/ui/core/SCTable';
 import Image from 'next/image';
+import { deleteShop } from '@/services/Shop';
 
 export type TShop = {
   _id: string;
@@ -33,13 +34,16 @@ export type TShop = {
   updatedAt: string;
 };
 
-interface ShopTableProps {
-  shops: TShop[];
-  loading: boolean;
-  onDelete: (shopId: string) => void;
-}
+const ShopTable = ({ shops }: { shops: TShop[] }) => {
+  const handleDelete = async (shopId: string) => {
+    try {
+      await deleteShop(shopId);
+    } catch (error) {
+      console.error('Failed to delete shop:', error);
+      throw error;
+    }
+  };
 
-const ShopTable = ({ shops, onDelete }: ShopTableProps) => {
   const columns: ColumnDef<TShop>[] = [
     {
       accessorKey: 'shopName',
@@ -111,7 +115,7 @@ const ShopTable = ({ shops, onDelete }: ShopTableProps) => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem
-                  onClick={() => onDelete(shop._id)}
+                  onClick={() => handleDelete(shop._id)}
                   className="text-red-600 focus:text-red-600"
                 >
                   Delete Shop

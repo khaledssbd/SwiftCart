@@ -1,36 +1,24 @@
-import { Button } from '@/components/ui/button';
-import SCContainer from '@/components/ui/core/SCContainer';
-import { getAllBrands } from '@/services/Brand';
 import { IBrand } from '@/types';
-import Image from 'next/image';
-import Link from 'next/link';
+import SCContainer from '@/components/ui/core/SCContainer';
+import BrandCard from './BrandCard';
 
-const TopBrands = async () => {
-  const { data: brands } = await getAllBrands();
-
+const TopBrands = async ({ brands = [] }: { brands: IBrand[] }) => {
   return (
-    <SCContainer className="my-36">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold">Top Brands</h2>
-        <Link href="/products">
-          <Button variant="outline" className="rounded-full">
-            All Collection
-          </Button>
-        </Link>
+    <SCContainer className="my-16">
+      {/* Simple centered header */}
+      <div className="text-center mb-10">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+          Our Brands
+        </h2>
+        <p className="text-gray-500 mt-2">
+          Trusted by industry leaders worldwide
+        </p>
       </div>
-      <div className="grid grid-cols-4 gap-6 my-10 ">
-        {brands?.slice(0, 4)?.map((brand: IBrand, idx: number) => (
-          <div className="bg-white p-3 rounded-xl" key={idx}>
-            <div className="bg-gray-100 p-2 rounded-xl h-20 w-full">
-              <Image
-                src={brand?.logo}
-                width={50}
-                height={50}
-                alt="category icon"
-                className="mx-auto h-full w-full object-contain"
-              />
-            </div>
-          </div>
+
+      {/* Clean grid layout */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+        {brands?.slice(0, 6).map((brand: IBrand) => (
+          <BrandCard key={brand._id} brand={brand} />
         ))}
       </div>
     </SCContainer>
