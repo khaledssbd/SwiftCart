@@ -2,7 +2,8 @@
 
 import { getValidToken } from '@/lib/verifyToken';
 
-export const getAllUsers = async () => {
+// getAllUsers
+export const getAllUsers = async (): Promise<any> => {
   try {
     const token = await getValidToken();
 
@@ -27,7 +28,11 @@ export const getAllUsers = async () => {
   }
 };
 
-export const updateUserStatus = async (userId: string, status: string) => {
+// updateUserStatus
+export const updateUserStatus = async (
+  userId: string,
+  status: string
+): Promise<any> => {
   try {
     const token = await getValidToken();
 

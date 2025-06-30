@@ -3,7 +3,8 @@
 import { getValidToken } from '@/lib/verifyToken';
 import { revalidateTag } from 'next/cache';
 
-export const getAllShops = async () => {
+// getAllShops
+export const getAllShops = async (): Promise<any> => {
   try {
     const token = await getValidToken();
 
@@ -27,7 +28,8 @@ export const getAllShops = async () => {
   }
 };
 
-export const deleteShop = async (shopId: string) => {
+// deleteShop
+export const deleteShop = async (shopId: string): Promise<any> => {
   try {
     const token = await getValidToken();
 

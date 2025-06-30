@@ -1,12 +1,8 @@
+import { IBrand } from '@/types';
+import BrandCard from './BrandCard';
+import SCContainer from '@/components/ui/core/SCContainer';
 
-import { getAllBrands } from "@/services/Brand";
-import { IBrand } from "@/types";
-import BrandCard from "./BrandCard";
-import SCContainer from "@/components/ui/core/SCContainer";
-
-const TopBrands = async () => {
-  const { data: brands } = await getAllBrands();
-
+const TopBrands = async ({ brands = [] }: { brands: IBrand[] }) => {
   return (
     <SCContainer className="my-16">
       {/* Simple centered header */}

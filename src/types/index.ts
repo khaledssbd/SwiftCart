@@ -4,3 +4,4 @@ export * from "./brand";
 export * from "./product";
 export * from "./meta";
 export * from "./payment"
+export * from "./shop"

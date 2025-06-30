@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import { ArrowRight, Mail, Rocket, Sparkles } from 'lucide-react';
@@ -29,7 +29,7 @@ export function Subscribe() {
     formState: { isSubmitting },
   } = form;
 
-  const onSubscribeSubmit = async (data: any) => {
+  const onSubscribeSubmit = async (data: FieldValues) => {
     try {
       const res = await addSubscriber(data);
       if (res?.success) {

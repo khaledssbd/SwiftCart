@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
+import { IBrand, ICategory, IShop, IUser } from '@/types';
 import {
   BarChart,
   Bar,
@@ -29,10 +30,10 @@ export default function DashboardPage({
   shopDistributionData,
   brandPopularityData,
 }: {
-  users: any[];
-  shops: any[];
-  brands: any[];
-  categories: any[];
+  users: IUser[];
+  shops: IShop[];
+  brands: IBrand[];
+  categories: ICategory[];
   stats: {
     title: string;
     value: number;

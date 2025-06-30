@@ -8,7 +8,7 @@ export const getAllProducts = async (
   page?: string,
   limit?: string,
   query?: { [key: string]: string | string[] | undefined }
-) => {
+): Promise<any> => {
   const params = new URLSearchParams();
   if (query?.searchTerm) {
     params.append('searchTerm', query.searchTerm.toString());
@@ -45,7 +45,7 @@ export const getAllProducts = async (
 };
 
 // get single product
-export const getSingleProduct = async (productId: string) => {
+export const getSingleProduct = async (productId: string): Promise<any> => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}/product/${productId}`,
@@ -135,7 +135,7 @@ export const deleteProduct = async (productId: string): Promise<any> => {
 };
 
 // get Trending Products
-export const getTrendingProducts = async (limit: number) => {
+export const getTrendingProducts = async (limit: number): Promise<any> => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}/product/trending?limit=${limit}`,

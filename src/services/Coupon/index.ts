@@ -2,9 +2,10 @@
 
 import { getValidToken } from '@/lib/verifyToken';
 import { revalidateTag } from 'next/cache';
+import { FieldValues } from 'react-hook-form';
 
-// create category
-export const createCoupon = async (data: any) => {
+// create Coupon
+export const createCoupon = async (data: FieldValues): Promise<any> => {
   try {
     const token = await getValidToken();
 
@@ -26,8 +27,8 @@ export const createCoupon = async (data: any) => {
   }
 };
 
-//get all categories
-export const getAllCoupon = async () => {
+//get All Coupons
+export const getAllCoupons = async (): Promise<any> => {
   try {
     const token = await getValidToken();
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/coupon`, {
@@ -47,7 +48,7 @@ export const getAllCoupon = async () => {
   }
 };
 
-// delete category
+// delete Coupon
 export const deleteCoupon = async (couponId: string): Promise<any> => {
   const token = await getValidToken();
   try {
@@ -73,7 +74,7 @@ export const deleteCoupon = async (couponId: string): Promise<any> => {
 // update Coupon
 export const updateCoupon = async (
   couponId: string,
-  data: any
+  data: FieldValues
 ): Promise<any> => {
   const token = await getValidToken();
   try {
@@ -89,7 +90,9 @@ export const updateCoupon = async (
       }
     );
     revalidateTag('COUPON');
-    return res.json();
+
+    const result = await res.json();
+    return result;
   } catch (error: any) {
     return Error(error);
   }

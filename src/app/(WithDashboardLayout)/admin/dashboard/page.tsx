@@ -4,6 +4,7 @@ import { getAllUsers } from '../user-management/_actions';
 import { getAllCategories } from '@/services/Category';
 import DashboardPage from './_components/DashboardPage';
 import { LayersIcon, StoreIcon, TagsIcon, UsersIcon } from 'lucide-react';
+import { IBrand, ICategory, IShop, IUser } from '@/types';
 
 export default async function Dashboard() {
   const [usersRes, shopsRes, brandsRes, categoriesRes] = await Promise.all([
@@ -13,10 +14,10 @@ export default async function Dashboard() {
     getAllCategories(),
   ]);
 
-  const users = usersRes?.data || [];
-  const shops = shopsRes?.data || [];
-  const brands = brandsRes?.data || [];
-  const categories = categoriesRes?.data || [];
+  const users: IUser[] = usersRes?.data || [];
+  const shops: IShop[] = shopsRes?.data || [];
+  const brands: IBrand[] = brandsRes?.data || [];
+  const categories: ICategory[] = categoriesRes?.data || [];
 
   const stats = [
     {
@@ -53,14 +54,14 @@ export default async function Dashboard() {
     { month: 'May', users: 250 },
   ];
 
-  const shopDistributionData = categories.map((category: any) => ({
+  const shopDistributionData = categories.map((category: ICategory) => ({
     name: category.name,
-    value: shops.filter((shop: any) => shop.category === category._id).length,
+    value: shops.filter((shop: IShop) => shop.category === category._id).length,
   }));
 
-  const brandPopularityData = brands.map((brand: any) => ({
+  const brandPopularityData = brands.map((brand: IBrand) => ({
     name: brand.name,
-    shops: shops.filter((shop: any) => shop.brand === brand._id).length,
+    shops: shops.filter((shop: IShop) => shop.brand === brand._id).length,
   }));
 
   return (

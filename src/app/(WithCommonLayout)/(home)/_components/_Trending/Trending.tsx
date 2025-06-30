@@ -1,12 +1,10 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import SCContainer from "@/components/ui/core/SCContainer";
-import { getTrendingProducts } from "@/services/Product";
-import { ShoppingCart } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import SCContainer from '@/components/ui/core/SCContainer';
+import { ShoppingCart } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export interface Product {
   imageUrls: string[];
@@ -16,37 +14,28 @@ export interface Product {
   productId: string;
 }
 
-const Trending = () => {
-  const [trending, setTrending] = useState([]);
-  const fetchTrending = async () => {
-    try {
-      const { data: products } = await getTrendingProducts(8);
-      setTrending(products);
-    } catch (error) {
-      console.error(error);
-      setTrending([]);
-    }
-  };
-  useEffect(() => {
-    fetchTrending();
-  }, []);
+const Trending = ({
+  trendingProducts = [],
+}: {
+  trendingProducts: Product[];
+}) => {
   return (
     <SCContainer className="my-8 md:my-16 lg:my-24 px-4 sm:px-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div className="flex-1 min-w-0">
-          {" "}
+          {' '}
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 break-words">
-            {" "}
+            {' '}
             Trendings Products
           </h2>
           <p className="text-gray-500 mt-2 break-words">
-            {" "}
+            {' '}
             Explore our wide range of trending products
           </p>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-10">
-        {trending.map((product: Product) => (
+        {trendingProducts.map((product: Product) => (
           <Card
             key={product.productId}
             className="overflow-hidden rounded-lg  shadow-sm hover:shadow-md transition-shadow"

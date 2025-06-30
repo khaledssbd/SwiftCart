@@ -1,5 +1,6 @@
 import { getValidToken } from "@/lib/verifyToken";
 
+// updatePaymentStatus
 export const updatePaymentStatus = async (
   paymentId: string,
   status: string
