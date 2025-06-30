@@ -41,10 +41,6 @@ export const updateUserStatus = async (
       }
     );
 
-    if (!res.ok) {
-      throw new Error(`Failed to update user status: ${res.statusText}`);
-    }
-
     const result = await res.json();
     return result;
   } catch (error: any) {

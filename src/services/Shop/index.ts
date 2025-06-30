@@ -39,14 +39,10 @@ export const getAllShops = async (): Promise<any> => {
       },
     });
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch shops: ${res.statusText}`);
-    }
-
     const result = await res.json();
     return result;
-  } catch (err: any) {
-    console.error(err?.message);
+  } catch (error: any) {
+    return Error(error);
   }
 };
 
@@ -65,16 +61,11 @@ export const deleteShop = async (shopId: string): Promise<any> => {
       }
     );
 
-    if (!res.ok) {
-      throw new Error(`Failed to delete shop: ${res.statusText}`);
-    }
-
     revalidateTag('SHOPS');
 
     const result = await res.json();
     return result;
   } catch (error: any) {
-    console.error('Error deleting shop:', error.message);
-    throw error;
+    return Error(error);
   }
 };

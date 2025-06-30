@@ -82,8 +82,8 @@ export const reCaptchaTokenVerification = async (
 
     const result = await res.json();
     return result;
-  } catch (err: any) {
-    return Error(err);
+  } catch (error: any) {
+    return Error(error);
   }
 };
 

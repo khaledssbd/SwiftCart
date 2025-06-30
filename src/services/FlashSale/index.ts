@@ -38,6 +38,6 @@ export const getFlashSaleProducts = async (): Promise<any> => {
     const result = await res.json();
     return result;
   } catch (error: any) {
-    return Error(error.message);
+    return Error(error);
   }
 };
