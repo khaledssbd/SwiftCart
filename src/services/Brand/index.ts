@@ -21,7 +21,7 @@ export const getAllBrands = async (
     const result = await res.json();
     return result;
   } catch (error: any) {
-    return Error(error.message);
+    return Error(error);
   }
 };
 
@@ -43,7 +43,7 @@ export const createBrand = async (brandData: FormData): Promise<any> => {
     const result = await res.json();
     return result;
   } catch (error: any) {
-    throw new Error(error.message || 'Something went wrong');
+    return Error(error);
   }
 };
 

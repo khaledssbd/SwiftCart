@@ -40,7 +40,7 @@ export const getAllProducts = async (
     const result = await res.json();
     return result;
   } catch (error: any) {
-    return Error(error.message);
+    return Error(error);
   }
 };
 
@@ -59,7 +59,7 @@ export const getSingleProduct = async (productId: string): Promise<any> => {
     const result = await res.json();
     return result;
   } catch (error: any) {
-    return Error(error.message);
+    return Error(error);
   }
 };
 
@@ -149,6 +149,6 @@ export const getTrendingProducts = async (limit: number): Promise<any> => {
     const result = await res.json();
     return result;
   } catch (error: any) {
-    return Error(error.message);
+    return Error(error);
   }
 };

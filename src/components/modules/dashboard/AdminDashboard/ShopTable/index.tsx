@@ -40,7 +40,6 @@ const ShopTable = ({ shops }: { shops: TShop[] }) => {
       await deleteShop(shopId);
     } catch (error) {
       console.error('Failed to delete shop:', error);
-      throw error;
     }
   };
 

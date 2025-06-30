@@ -25,9 +25,9 @@ const UsersPage = () => {
         setUsers(data);
       } catch (error) {
         toast.error('Failed to fetch users!');
-      } finally {
       }
     };
+
     fetchUsers();
   }, []);
 
