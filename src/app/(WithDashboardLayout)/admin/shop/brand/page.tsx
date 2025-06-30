@@ -1,5 +1,5 @@
+import ManageBrands from '@/components/modules/dashboard/AdminDashboard/ManageBrands';
 import { getAllBrands } from '@/services/Brand';
-import ManageBrands from './_components';
 
 const ProductBrandPage = async ({
   searchParams,

@@ -3,7 +3,8 @@
 import { getValidToken } from '@/lib/verifyToken';
 import { revalidateTag } from 'next/cache';
 
-export const getProfile = async () => {
+// getProfile
+export const getProfile = async (): Promise<any> => {
   const token = await getValidToken();
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/user/me`, {
@@ -24,7 +25,8 @@ export const getProfile = async () => {
   }
 };
 
-export const updateProfile = async (formData: FormData) => {
+// updateProfile
+export const updateProfile = async (formData: FormData): Promise<any> => {
   const token = await getValidToken();
 
   try {

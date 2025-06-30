@@ -4,11 +4,12 @@ import Link from 'next/link';
 import CountDown from './CountDown';
 import SCContainer from '@/components/ui/core/SCContainer';
 import ProductCard from '@/components/ui/core/ProductCard';
-import { getFlashSaleProducts } from '@/services/FlashSale';
 
-const FlashSale = async () => {
-  const { data: products } = await getFlashSaleProducts();
-
+const FlashSale = async ({
+  flashSaleProducts = [],
+}: {
+  flashSaleProducts: IProduct[];
+}) => {
   return (
     <div className=" bg-white bg-opacity-50 pt-6 pb-8">
       <SCContainer>
@@ -30,10 +31,12 @@ const FlashSale = async () => {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-10">
-                  {products?.slice(0, 5).map((product: IProduct, idx: number) => (
-                    <ProductCard key={idx} product={product} />
-                  ))}
-                </div>
+          {flashSaleProducts?.slice(0, 5).map(
+            (product: IProduct, idx: number) => (
+              <ProductCard key={idx} product={product} />
+            )
+          )}
+        </div>
       </SCContainer>
     </div>
   );

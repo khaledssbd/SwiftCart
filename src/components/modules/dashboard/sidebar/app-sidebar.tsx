@@ -3,8 +3,8 @@
 import * as React from 'react';
 import {
   Bot,
-  LifeBuoy,
-  Send,
+  // LifeBuoy,
+  // Send,
   Settings,
   SquareTerminal,
   ShoppingCart,

@@ -2,9 +2,10 @@
 
 import { getValidToken } from '@/lib/verifyToken';
 import { revalidateTag } from 'next/cache';
+import { FieldValues } from 'react-hook-form';
 
 // add Flash Sale
-export const addFlashSale = async (productData: any): Promise<any> => {
+export const addFlashSale = async (productData: FieldValues): Promise<any> => {
   const token = await getValidToken();
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/flash-sale`, {
@@ -26,7 +27,7 @@ export const addFlashSale = async (productData: any): Promise<any> => {
 };
 
 // get Flash Sale Products
-export const getFlashSaleProducts = async () => {
+export const getFlashSaleProducts = async (): Promise<any> => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/flash-sale`, {
       next: {

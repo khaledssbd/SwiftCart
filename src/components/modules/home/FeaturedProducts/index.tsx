@@ -1,13 +1,14 @@
 import { Button } from '@/components/ui/button';
 import SCContainer from '@/components/ui/core/SCContainer';
 import ProductCard from '@/components/ui/core/ProductCard';
-import { getAllProducts } from '@/services/Product';
 import { IProduct } from '@/types';
 import Link from 'next/link';
 
-const FeaturedProducts = async () => {
-  const { data: products } = await getAllProducts();
-
+const FeaturedProducts = async ({
+  products = [],
+}: {
+  products: IProduct[];
+}) => {
   return (
     <div className=" bg-white bg-opacity-50 pt-6 pb-8">
       <SCContainer className="my-16">

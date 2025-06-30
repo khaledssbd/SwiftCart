@@ -5,9 +5,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { heroImages } from '@/app/(WithCommonLayout)/(home)/_components/_data';
 import Link from 'next/link';
 import SCContainer from '@/components/ui/core/SCContainer';
+import { heroImages } from '@/constants';
 
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -3,7 +3,8 @@
 import { getValidToken } from '@/lib/verifyToken';
 import { IOrder } from '@/types/cart';
 
-export const createOrder = async (order: IOrder) => {
+// createOrder
+export const createOrder = async (order: IOrder): Promise<any> => {
   const token = await getValidToken();
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/order`, {
@@ -22,11 +23,12 @@ export const createOrder = async (order: IOrder) => {
   }
 };
 
+// addCoupon
 export const addCoupon = async (
   couponCode: string,
   subTotal: number,
   shopId: string
-) => {
+): Promise<any> => {
   const token = await getValidToken();
   try {
     const res = await fetch(

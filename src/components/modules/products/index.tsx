@@ -1,16 +1,17 @@
-"use client";
-import ProductCard from "@/components/ui/core/ProductCard";
-import FilterSidebar from "./filterSidebar";
-import { IProduct } from "@/types";
-import { Button } from "@/components/ui/button";
-import { Filter, X } from "lucide-react";
-import { useState, useEffect } from "react";
+'use client';
+
+import ProductCard from '@/components/ui/core/ProductCard';
+import FilterSidebar from './filterSidebar';
+import { IProduct } from '@/types';
+import { Button } from '@/components/ui/button';
+import { Filter } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
+} from '@/components/ui/sheet';
 
 export const AllProducts = ({ products }: { products: IProduct[] }) => {
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
@@ -25,10 +26,10 @@ export const AllProducts = ({ products }: { products: IProduct[] }) => {
     checkScreenSize();
 
     // Add event listener
-    window.addEventListener("resize", checkScreenSize);
+    window.addEventListener('resize', checkScreenSize);
 
     // Cleanup
-    return () => window.removeEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
   return (
@@ -79,7 +80,7 @@ export const AllProducts = ({ products }: { products: IProduct[] }) => {
         {/* Products Grid - Adjusts based on sidebar visibility */}
         <div
           className={`${
-            isDesktop ? "lg:col-span-9 xl:col-span-10" : "col-span-12"
+            isDesktop ? 'lg:col-span-9 xl:col-span-10' : 'col-span-12'
           }`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">

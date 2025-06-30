@@ -1,21 +1,8 @@
-// app/dashboard/shops/page.tsx
-
-import { deleteShop, getAllShops } from './_actions';
-import ShopTable from './_components/ShopTable';
+import ShopTable from '@/components/modules/dashboard/AdminDashboard/ShopTable';
+import { getAllShops } from '@/services/Shop';
 
 export default async function ShopsPage() {
-  const shops = await getAllShops();
-
-  const handleDelete = async (shopId: string) => {
-    'use server';
-
-    try {
-      await deleteShop(shopId);
-    } catch (error) {
-      console.error('Failed to delete shop:', error);
-      throw error;
-    }
-  };
+  const { data: shops } = await getAllShops();
 
   return (
     <div className="space-y-6  bg-white min- rounded-xl min-h-screen">
@@ -23,9 +10,9 @@ export default async function ShopsPage() {
         <h1 className="text-2xl p-4 font-bold">Shops Management</h1>
       </div>
 
-      <ShopTable shops={shops?.data} loading={false} onDelete={handleDelete} />
+      <ShopTable shops={shops} />
     </div>
   );
 }
 
-
+export const dynamic = 'force-dynamic';
