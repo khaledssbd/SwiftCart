@@ -27,10 +27,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { protectedRoutes } from "@/constants";
 import { useAppSelector } from "@/redux/hooks";
 import { orderedProductsSelector } from "@/redux/features/cartSlice";
-// import logo from '../../../public/logo.png';
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-
 import { getProfile } from "@/services/Profile";
 import { IProfile } from "@/types/profile";
 import SearchInput from "../modules/home/SearchInput/SearchInput";
